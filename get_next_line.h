@@ -1,15 +1,17 @@
 #ifndef GET_NEXT_LINE_H
+
 # define GET_NEXT_LINE_H
+# define FD_SIZE 1024
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h>
+# include <unistd.h>
 # include <fcntl.h>
+# include <stdlib.h>
 
-int		ft_strlen(char *s);
+size_t	ft_strlen(char *s);
+int		ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-char	*ft_strchr(char *s, int c);
+char	*ft_substr(char *s, int start, int len);
 
 #endif
