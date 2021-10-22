@@ -1,32 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/22 13:54:18 by mbarylak          #+#    #+#             */
+/*   Updated: 2021/10/22 16:25:12 by mbarylak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char	*get_line(char **file, int fd)
+static char	*get_line(char **file, int fd)
 {
 	char	*aux;
 	char	*line;
 	int		i;
 
-	if (!file[fd])
-		return (NULL);
-	aux = ft_strdup(file[fd]);
-	free(file[fd]);
+	aux = file[fd];
 	i = ft_strchr(aux, '\n');
 	line = ft_substr(aux, 0, i + 1);
 	file[fd] = ft_substr(aux, i + 1, (ft_strlen(aux) - i));
+	free(aux);
 	if (!file[fd])
 	{
 		free(file[fd]);
-		file[fd] = NULL;
+		return (NULL);
 	}
-	free(aux);
-	return (line);
+	aux = line;
+	free(line);
+	return (aux);
 }
 
 char	*get_next_line(int fd)
 {
 	char		buf[BUFFER_SIZE + 1];
 	static char	*file[FD_SIZE];
-	char		*line;
 	int			ret;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -45,10 +55,8 @@ char	*get_next_line(int fd)
 			file[fd] = ft_strjoin(file[fd], buf);
 		}
 		else
-		{
-			line = get_line(file, fd);
-			return (line);
-		}
+			return (get_line(file, fd));
 	}
+	free(file[fd]);
 	return (NULL);
 }
