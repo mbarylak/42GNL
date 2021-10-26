@@ -6,7 +6,7 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:54:18 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/22 18:23:54 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:31:20 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,22 @@ static char	*get_line(char **file, int fd)
 	char	*line;
 	int		i;
 
+	if (!file[fd])
+		return (NULL);
 	aux = file[fd];
 	i = ft_strchr(aux, '\n');
+	if (i == -1)
+	{
+		if (ft_strlen(aux) <= 0)
+			return (ft_free(file + fd));
+		line = ft_strdup(aux);
+		ft_free(&aux);
+		file[fd] = NULL;
+		return (line);
+	}
 	line = ft_substr(aux, 0, i + 1);
 	file[fd] = ft_substr(aux, i + 1, (ft_strlen(aux) - i));
 	ft_free(&aux);
-	if (!file[fd])
-		return (NULL);
 	return (line);
 }
 
@@ -54,7 +63,7 @@ char	*get_next_line(int fd)
 		if (ft_strchr(file[fd], '\n') == -1)
 		{
 			ret = read(fd, buf, BUFFER_SIZE);
-			if (ret <= 0)
+			if (ret == -1)
 				return (ft_free(file + fd));
 			buf[ret] = '\0';
 			file[fd] = ft_strjoin(file[fd], buf);
@@ -62,5 +71,5 @@ char	*get_next_line(int fd)
 		else
 			return (get_line(file, fd));
 	}
-	return (ft_free(file + fd));
+	return (get_line(file, fd));
 }
