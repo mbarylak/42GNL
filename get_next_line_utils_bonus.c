@@ -6,11 +6,11 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:54:56 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/26 12:42:48 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:16:17 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *s)
 {

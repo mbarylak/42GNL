@@ -6,13 +6,13 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:55:10 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/26 13:33:30 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:15:46 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
 
-# define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_BONUS_H
 # define FD_SIZE 1024
 
 # include <stdio.h>

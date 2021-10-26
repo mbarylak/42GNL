@@ -6,11 +6,11 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:54:18 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/26 14:02:20 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:16:02 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_free(char **file)
 {
