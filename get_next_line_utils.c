@@ -6,13 +6,13 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:54:56 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/22 15:01:25 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/22 18:20:29 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 

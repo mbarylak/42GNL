@@ -6,11 +6,21 @@
 /*   By: mbarylak <mbarylak@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:54:18 by mbarylak          #+#    #+#             */
-/*   Updated: 2021/10/22 16:25:12 by mbarylak         ###   ########.fr       */
+/*   Updated: 2021/10/22 18:23:54 by mbarylak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*ft_free(char **file)
+{
+	if (*file)
+	{
+		free(*file);
+		*file = NULL;
+	}
+	return (NULL);
+}
 
 static char	*get_line(char **file, int fd)
 {
@@ -22,15 +32,10 @@ static char	*get_line(char **file, int fd)
 	i = ft_strchr(aux, '\n');
 	line = ft_substr(aux, 0, i + 1);
 	file[fd] = ft_substr(aux, i + 1, (ft_strlen(aux) - i));
-	free(aux);
+	ft_free(&aux);
 	if (!file[fd])
-	{
-		free(file[fd]);
 		return (NULL);
-	}
-	aux = line;
-	free(line);
-	return (aux);
+	return (line);
 }
 
 char	*get_next_line(int fd)
@@ -50,13 +55,12 @@ char	*get_next_line(int fd)
 		{
 			ret = read(fd, buf, BUFFER_SIZE);
 			if (ret <= 0)
-				return (NULL);
+				return (ft_free(file + fd));
 			buf[ret] = '\0';
 			file[fd] = ft_strjoin(file[fd], buf);
 		}
 		else
 			return (get_line(file, fd));
 	}
-	free(file[fd]);
-	return (NULL);
+	return (ft_free(file + fd));
 }
